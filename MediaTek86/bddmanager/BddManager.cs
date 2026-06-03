@@ -6,31 +6,31 @@ using MySql.Data.MySqlClient;
 namespace MediaTek86.bddmanager
 {
     /// <summary>
-    /// Gestion de la connexion à la base de données MySQL.
-    /// Implémente le patron de conception Singleton.
-    /// Ne doit pas être utilisée directement : passer par la classe Access.
+    /// classe qui gere la connexion a la base de données
+    /// c'est un singleton donc une seule instance possible
+    /// on passe par Access pour l'utiliser
     /// </summary>
     public class BddManager
     {
         /// <summary>
-        /// Instance unique de BddManager (patron Singleton)
+        /// l'instance unique
         /// </summary>
         private static BddManager instance = null;
 
         /// <summary>
-        /// Objet de connexion MySQL
+        /// la connexion mysql
         /// </summary>
         private readonly MySqlConnection connexion;
 
         /// <summary>
-        /// Verrou pour la gestion du multithread
+        /// pour eviter les problemes si plusieurs threads en meme temps
         /// </summary>
         private static readonly object verrou = new object();
 
         /// <summary>
-        /// Constructeur privé : ouvre la connexion à la base de données
+        /// constructeur prive qui ouvre la connexion
         /// </summary>
-        /// <param name="chaineConnexion">Chaîne de connexion MySQL</param>
+        /// <param name="chaineConnexion">la chaine de connexion a la bdd</param>
         private BddManager(string chaineConnexion)
         {
             try
@@ -47,10 +47,10 @@ namespace MediaTek86.bddmanager
         }
 
         /// <summary>
-        /// Retourne l'instance unique de BddManager, en la créant si nécessaire.
+        /// retourne l'instance unique, la cree si elle existe pas encore
         /// </summary>
-        /// <param name="chaineConnexion">Chaîne de connexion MySQL</param>
-        /// <returns>L'instance unique de BddManager</returns>
+        /// <param name="chaineConnexion">la chaine de connexion</param>
+        /// <returns>l'instance de BddManager</returns>
         public static BddManager GetInstance(string chaineConnexion)
         {
             if (instance == null)
@@ -67,11 +67,11 @@ namespace MediaTek86.bddmanager
         }
 
         /// <summary>
-        /// Exécute une requête SELECT et retourne les résultats sous forme de liste.
+        /// execute un SELECT et retourne les resultats
         /// </summary>
-        /// <param name="requete">Requête SQL SELECT</param>
-        /// <param name="parametres">Paramètres de la requête (optionnel)</param>
-        /// <returns>Liste de tableaux d'objets représentant les lignes résultantes</returns>
+        /// <param name="requete">la requete sql</param>
+        /// <param name="parametres">les parametres si besoin</param>
+        /// <returns>liste de tableaux avec les resultats</returns>
         public List<object[]> ExecuterSelect(string requete, Dictionary<string, object> parametres = null)
         {
             List<object[]> resultats = new List<object[]>();
@@ -102,18 +102,17 @@ namespace MediaTek86.bddmanager
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de l'exécution de la requête SELECT :\n" + ex.Message,
-                    "Erreur SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erreur dans le select : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return resultats;
         }
 
         /// <summary>
-        /// Exécute une requête de modification (INSERT, UPDATE, DELETE).
+        /// execute un INSERT UPDATE ou DELETE
         /// </summary>
-        /// <param name="requete">Requête SQL de modification</param>
-        /// <param name="parametres">Paramètres de la requête (optionnel)</param>
+        /// <param name="requete">la requete sql</param>
+        /// <param name="parametres">les parametres si besoin</param>
         public void ExecuterUpdate(string requete, Dictionary<string, object> parametres = null)
         {
             MySqlCommand commande = new MySqlCommand(requete, connexion);
@@ -133,8 +132,7 @@ namespace MediaTek86.bddmanager
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de l'exécution de la requête :\n" + ex.Message,
-                    "Erreur SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erreur dans la requete : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

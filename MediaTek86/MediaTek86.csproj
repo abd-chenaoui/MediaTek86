@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="bddmanager\BddManager.cs" />
+    <Compile Include="controleur\Controleur.cs" />
     <Compile Include="dal\Access.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -111,6 +112,21 @@
     <Compile Include="modele\Service.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="vue\FrmConnexion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vue\FrmListeAbsences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vue\FrmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vue\FrmSaisieAbsence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vue\FrmSaisiePersonnel.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -134,9 +150,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="controleur\" />
-    <Folder Include="vue\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
