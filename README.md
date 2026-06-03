@@ -38,9 +38,13 @@ MediaTek86
 
   MediaTek86/
   ├── bddmanager/   → classe singleton de connexion MySQL
+  
   ├── dal/          → accès aux données (requêtes SQL)
+  
   ├── modele/       → classes métiers
+  
   ├── vue/          → formulaires Windows Forms
+  
   └── controleur/   → contrôleur MVC
 
   
