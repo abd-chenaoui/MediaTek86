@@ -17,7 +17,7 @@ namespace MediaTek86.dal
         /// Chaîne de connexion à la base de données MySQL.
         /// Adapter le login/password selon la configuration locale.
         /// </summary>
-        private static readonly string chaineConnexion = "server=localhost;user id=adminmediatek;password=motdepasse;database=mediatek86;SslMode=none;";
+        private static readonly string chaineConnexion = "server=localhost;user id=adminmediatek;password=mediatek86;database=mediatek86;SslMode=none;";
 
         /// <summary>
         /// Instance unique de la classe Access
